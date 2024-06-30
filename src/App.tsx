@@ -13,6 +13,8 @@ function App() {
       <main style={{textAlign: 'center'}}>
         <Form/>
       </main>
+      <footer>
+      </footer>
     </div>
     </>
   )
