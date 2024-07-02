@@ -1,9 +1,16 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import styles from './Despesas.module.css';
 
 const Despesas = () => {
   return (
     <div>
-      <h2>Página de Despesas</h2>
-      <p>Conteúdo específico de Despesas.</p>
+      <h1>
+        <Link to="/" className={styles.Arrow}>
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </Link>
+      </h1>
     </div>
   );
 };
