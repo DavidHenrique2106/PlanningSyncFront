@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import styles from "./Despesas.module.css";
+import styles from "./Bolos.module.css";
 import { useState } from "react";
 import { Card, Space } from "antd";
 import { ToastContainer, toast } from "react-toastify";

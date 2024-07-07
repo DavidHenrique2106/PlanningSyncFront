@@ -7,10 +7,10 @@ const Sidebar = () => {
       <div className={styles.logo}>Logo</div>
       <div className={styles.menu}>
         <h1>
-          <Link to="/faturamento" className={styles.link}>Faturamento</Link>
+          <Link to="/faturamento" className={styles.link}>Adicionar Pedidos</Link>
         </h1>
         <h1>
-          <Link to="/despesas" className={styles.link}>Despesas</Link>
+          <Link to="/despesas" className={styles.link}>Ver Pedidos feitos</Link>
         </h1>
       </div>
     </div>
