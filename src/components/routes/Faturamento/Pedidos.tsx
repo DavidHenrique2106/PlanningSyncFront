@@ -6,13 +6,28 @@ import "react-toastify/dist/ReactToastify.css";
 const Pedido: React.FC = () => {
   const [pedido, setPedido] = useState<string>("");
   const [data, setData] = useState<string>("");
+  const [valor, setValor] = useState<number>(0);
+  const [doces, setDoces] = useState<string>("");
+  const [salgados, setSalgados] = useState<string>("");
+  const [hora, setHora] = useState<string>("");
 
   const handleAdicionar = () => {
-    if (pedido !== "" && data !== "") {
-      console.log({ pedido, data });
+    if (
+      pedido !== "" &&
+      data !== "" &&
+      valor !== undefined &&
+      doces !== "" &&
+      salgados !== "" &&
+      hora !== ""
+    ) {
+      console.log({ pedido, data, valor, doces, salgados, hora });
       toast.success("Pedido adicionado!!");
       setPedido("");
       setData("");
+      setValor(0);
+      setDoces("");
+      setSalgados("");
+      setHora("");
     } else {
       toast.error("Complete os campos em branco!");
     }
@@ -24,29 +39,90 @@ const Pedido: React.FC = () => {
         <Space direction="vertical" size={16}>
           <Card
             title="Fazer pedido"
-            style={{ width: 300, border: "1px solid black", borderRadius: "8px" }}
+            style={{
+              width: 300,
+              border: "1px solid black",
+              borderRadius: "8px",
+            }}
             headStyle={{ borderBottom: "1px solid black" }}
           >
             <input
               type="text"
               value={pedido}
-              placeholder="Sabor"
+              placeholder="Ex: Sabor Bolo / Torta"
               onChange={(e) => setPedido(e.target.value)}
               style={{
-                width: "100%",
+                width: "80%",
                 padding: "8px",
                 border: "1px solid black",
                 borderRadius: "4px",
                 marginBottom: "10px",
               }}
             />
+
+            <input
+              type="text"
+              value={doces}
+              placeholder="Ex: 10 brigadeiro, 10..."
+              onChange={(e) => setDoces(e.target.value)}
+              style={{
+                width: "80%",
+                padding: "8px",
+                border: "1px solid black",
+                borderRadius: "4px",
+                marginBottom: "10px",
+              }}
+            />
+
+            <input
+              type="text"
+              value={salgados}
+              placeholder="Ex: 10 coxinhas, 10..."
+              onChange={(e) => setSalgados(e.target.value)}
+              style={{
+                width: "80%",
+                padding: "8px",
+                border: "1px solid black",
+                borderRadius: "4px",
+                marginBottom: "10px",
+              }}
+            />
+
             <input
               type="text"
               value={data}
-              placeholder="ex: 21 de junho"
+              placeholder="Ex: 21 de junho-Segunda Feira"
               onChange={(e) => setData(e.target.value)}
               style={{
-                width: "100%",
+                width: "80%",
+                padding: "8px",
+                border: "1px solid black",
+                borderRadius: "4px",
+                marginBottom: "10px",
+              }}
+            />
+
+            <input
+              type="text"
+              value={hora}
+              placeholder="Ex: 14h00"
+              onChange={(e) => setHora(e.target.value)}
+              style={{
+                width: "80%",
+                padding: "8px",
+                border: "1px solid black",
+                borderRadius: "4px",
+                marginBottom: "10px",
+              }}
+            />
+
+            <input
+              type="number"
+              value={valor}
+              placeholder="Valor do Bolo em R$"
+              onChange={(e) => setValor(Number(e.target.value))}
+              style={{
+                width: "80%",
                 padding: "8px",
                 border: "1px solid black",
                 borderRadius: "4px",
