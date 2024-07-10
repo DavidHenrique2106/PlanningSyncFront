@@ -1,38 +1,34 @@
 .Sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 200px;
-    background-color: #214cce;
-    color: #fff;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .menu {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .link {
-    text-decoration: none;
-    position: relative;
-    color: #fff;
-    margin-bottom: 10px;
-    top: -350px;
-  }
-  
-  .link:hover {
-    text-decoration: underline;
-    color: #fff;
-  }
-  
+  position: fixed;
+  left: 0;
+  top: 0; 
+  width: 200px; 
+  height: 100vh; 
+  background-color: #214cce; 
+  padding: 20px;
+  color: white; 
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: white; 
+}
+
+.menu h1 {
+  margin: 10px 0;
+}
+
+.link {
+  color: white; 
+  text-decoration: none; 
+  cursor: pointer; 
+  position: relative;
+  top:  50px;
+}
+
+.link:hover {
+  text-decoration: underline; 
+}

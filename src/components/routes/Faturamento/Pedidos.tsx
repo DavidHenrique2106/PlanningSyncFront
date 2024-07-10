@@ -1,61 +1,70 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import styles from "./Pedidos.module.css";
 import { Card, Space } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Faturamento: React.FC = () => {
-  const [faturamento, setFaturamento] = useState<number | undefined>(undefined);
+const Pedido: React.FC = () => {
+  const [pedido, setPedido] = useState<string>("");
+  const [data, setData] = useState<string>("");
+
   const handleAdicionar = () => {
-    if (faturamento !== undefined) {
-      console.log(faturamento);
-      toast.success("Faturamento adicionado!!");
-      setFaturamento(undefined);
+    if (pedido !== "" && data !== "") {
+      console.log({ pedido, data });
+      toast.success("Pedido adicionado!!");
+      setPedido("");
+      setData("");
     } else {
-      toast.error("Digite um valor!");
+      toast.error("Complete os campos em branco!");
     }
   };
 
   return (
     <div>
-      <h1>
-        <Link to="/" className={styles.Arrow}>
-          <FontAwesomeIcon icon={faArrowLeft} />
-        </Link>
-      </h1>
-
       <div className="Card">
         <Space direction="vertical" size={16}>
           <Card
-            title="Seu faturamento"
-            style={{ width: 300, border: "1px solid black" }}
+            title="Fazer pedido"
+            style={{ width: 300, border: "1px solid black", borderRadius: "8px" }}
             headStyle={{ borderBottom: "1px solid black" }}
           >
             <input
-              type="number"
-              value={faturamento ?? ""}
-              onChange={(e) => setFaturamento(Number(e.target.value))}
-              placeholder="$$$"
+              type="text"
+              value={pedido}
+              placeholder="Sabor"
+              onChange={(e) => setPedido(e.target.value)}
               style={{
-                position: "relative",
-                right: "-35px",
+                width: "100%",
+                padding: "8px",
                 border: "1px solid black",
                 borderRadius: "4px",
+                marginBottom: "10px",
               }}
             />
-            <br />
-            <br />
+            <input
+              type="text"
+              value={data}
+              placeholder="ex: 21 de junho"
+              onChange={(e) => setData(e.target.value)}
+              style={{
+                width: "100%",
+                padding: "8px",
+                border: "1px solid black",
+                borderRadius: "4px",
+                marginBottom: "10px",
+              }}
+            />
             <br />
             <button
               onClick={handleAdicionar}
               style={{
+                width: "100%",
+                padding: "10px",
                 borderRadius: "10px",
-                position: "relative",
-                right: "-85px",
-                top: "20px",
+                border: "none",
+                backgroundColor: "#4CAF50",
+                color: "white",
+                fontSize: "16px",
+                cursor: "pointer",
               }}
             >
               Adicionar
@@ -69,4 +78,4 @@ const Faturamento: React.FC = () => {
   );
 };
 
-export default Faturamento;
+export default Pedido;
