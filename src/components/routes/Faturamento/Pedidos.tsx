@@ -10,6 +10,7 @@ const Pedido: React.FC = () => {
   const [doces, setDoces] = useState<string>("");
   const [salgados, setSalgados] = useState<string>("");
   const [hora, setHora] = useState<string>("");
+  const [nome, setNome] = useState<string>("")
 
   const handleAdicionar = () => {
     if (
@@ -18,9 +19,11 @@ const Pedido: React.FC = () => {
       valor !== undefined &&
       doces !== "" &&
       salgados !== "" &&
-      hora !== ""
+      hora !== "" &&
+      nome !== ""
+
     ) {
-      console.log({ pedido, data, valor, doces, salgados, hora });
+      console.log({ pedido, data, valor, doces, salgados, hora, nome });
       toast.success("Pedido adicionado!!");
       setPedido("");
       setData("");
@@ -28,6 +31,7 @@ const Pedido: React.FC = () => {
       setDoces("");
       setSalgados("");
       setHora("");
+      setNome("")
     } else {
       toast.error("Complete os campos em branco!");
     }
@@ -35,9 +39,11 @@ const Pedido: React.FC = () => {
 
   return (
     <div>
-      <div className="Card">
+      <div 
+      className="Card"
+      style={{position: 'relative', top: '-50px'}}>
         <Space direction="vertical" size={16}>
-          <Card
+          <Card className="CardA"
             title="Fazer pedido"
             style={{
               width: 300,
@@ -59,6 +65,21 @@ const Pedido: React.FC = () => {
                 marginBottom: "10px",
               }}
             />
+
+              <input
+              type="text"
+              value={nome}
+              placeholder="Ex: David, Anna.."
+              onChange={(e) => setNome(e.target.value)}
+              style={{
+                width: "80%",
+                padding: "8px",
+                border: "1px solid black",
+                borderRadius: "4px",
+                marginBottom: "10px",
+              }}>
+
+              </input>
 
             <input
               type="text"
