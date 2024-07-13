@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, Space } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const Pedido: React.FC = () => {
   const [pedido, setPedido] = useState<string>("");
@@ -10,9 +11,9 @@ const Pedido: React.FC = () => {
   const [doces, setDoces] = useState<string>("");
   const [salgados, setSalgados] = useState<string>("");
   const [hora, setHora] = useState<string>("");
-  const [nome, setNome] = useState<string>("")
+  const [nome, setNome] = useState<string>("");
 
-  const handleAdicionar = () => {
+  const handleAdicionar = async () => {
     if (
       pedido !== "" &&
       data !== "" &&
@@ -21,17 +22,30 @@ const Pedido: React.FC = () => {
       salgados !== "" &&
       hora !== "" &&
       nome !== ""
-
     ) {
-      console.log({ pedido, data, valor, doces, salgados, hora, nome });
-      toast.success("Pedido adicionado!!");
-      setPedido("");
-      setData("");
-      setValor(0);
-      setDoces("");
-      setSalgados("");
-      setHora("");
-      setNome("")
+      try {
+        const response = await axios.post("http://localhost:8080/api/pedidos", {
+          sabor: pedido,
+          nome: nome,
+          brigadeiro: doces,
+          coxinha: salgados,
+          data: data,
+          horario: hora,
+          valor: valor
+        });
+        console.log(response.data);
+        toast.success("Pedido adicionado!!");
+        setPedido("");
+        setData("");
+        setValor(0);
+        setDoces("");
+        setSalgados("");
+        setHora("");
+        setNome("");
+      } catch (error) {
+        toast.error("Erro ao adicionar pedido!");
+        console.error(error);
+      }
     } else {
       toast.error("Complete os campos em branco!");
     }
@@ -39,9 +53,10 @@ const Pedido: React.FC = () => {
 
   return (
     <div>
-      <div 
-      className="Card"
-      style={{position: 'relative', top: '-50px'}}>
+      <div
+        className="Card"
+        style={{ position: 'relative', top: '-50px' }}
+      >
         <Space direction="vertical" size={16}>
           <Card className="CardA"
             title="Fazer pedido"
@@ -65,8 +80,7 @@ const Pedido: React.FC = () => {
                 marginBottom: "10px",
               }}
             />
-
-              <input
+            <input
               type="text"
               value={nome}
               placeholder="Ex: David, Anna.."
@@ -77,10 +91,8 @@ const Pedido: React.FC = () => {
                 border: "1px solid black",
                 borderRadius: "4px",
                 marginBottom: "10px",
-              }}>
-
-              </input>
-
+              }}
+            />
             <input
               type="text"
               value={doces}
@@ -94,7 +106,6 @@ const Pedido: React.FC = () => {
                 marginBottom: "10px",
               }}
             />
-
             <input
               type="text"
               value={salgados}
@@ -108,7 +119,6 @@ const Pedido: React.FC = () => {
                 marginBottom: "10px",
               }}
             />
-
             <input
               type="text"
               value={data}
@@ -122,7 +132,6 @@ const Pedido: React.FC = () => {
                 marginBottom: "10px",
               }}
             />
-
             <input
               type="text"
               value={hora}
@@ -136,7 +145,6 @@ const Pedido: React.FC = () => {
                 marginBottom: "10px",
               }}
             />
-
             <input
               type="number"
               value={valor}
@@ -169,7 +177,6 @@ const Pedido: React.FC = () => {
           </Card>
         </Space>
       </div>
-
       <ToastContainer />
     </div>
   );
