@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Card, Space } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+import { adicionarPedido } from "./PedidoService"; // Ajuste o caminho conforme necessário
+
+
 
 const Pedido: React.FC = () => {
   const [pedido, setPedido] = useState<string>("");
@@ -24,16 +26,17 @@ const Pedido: React.FC = () => {
       nome !== ""
     ) {
       try {
-        const response = await axios.post("http://localhost:8080/api/pedidos", {
+        const pedidoData = {
           sabor: pedido,
           nome: nome,
           brigadeiro: doces,
           coxinha: salgados,
           data: data,
           horario: hora,
-          valor: valor
-        });
-        console.log(response.data);
+          valor: valor,
+        };
+        const response = await adicionarPedido(pedidoData);
+        console.log(response);
         toast.success("Pedido adicionado!!");
         setPedido("");
         setData("");
